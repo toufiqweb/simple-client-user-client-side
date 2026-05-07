@@ -1,4 +1,4 @@
-import { getSingleUserById } from "@/lib/data";
+import { getSingleUserById } from "@/app/lib/data";
 import React from "react";
 
 const UserDetailPage = async ({ params }) => {

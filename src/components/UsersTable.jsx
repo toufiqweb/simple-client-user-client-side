@@ -1,9 +1,15 @@
-import { Button, Table } from "@heroui/react";
+"use client"
+import { AlertDialog, Button, Table } from "@heroui/react";
 import Link from "next/link";
 import React from "react";
 
-const UsersTable = ({ users }) => {
-  console.log(users);
+const UsersTable = ({ users , deleteUserAction}) => {
+  // console.log(users);
+
+  const handleDelete = async (userId) => {
+
+    await deleteUserAction(userId)
+  }
 
   return (
     <div className="max-w-5xl mx-auto py-10">
@@ -29,7 +35,37 @@ const UsersTable = ({ users }) => {
                     <Link href={""}>
                       <Button variant="outline">Edit</Button>
                     </Link>
-                    <Button variant="danger">Delete</Button>
+                    <AlertDialog>
+                      <Button variant="danger">Delete Project</Button>
+                      <AlertDialog.Backdrop>
+                        <AlertDialog.Container>
+                          <AlertDialog.Dialog className="sm:max-w-100">
+                            <AlertDialog.CloseTrigger />
+                            <AlertDialog.Header>
+                              <AlertDialog.Icon status="danger" />
+                              <AlertDialog.Heading>
+                                Delete user permanently?
+                              </AlertDialog.Heading>
+                            </AlertDialog.Header>
+                            <AlertDialog.Body>
+                              <p>
+                                This will permanently delete{" "}
+                                <strong>{user.name}</strong> and all of
+                                its data. This action cannot be undone.
+                              </p>
+                            </AlertDialog.Body>
+                            <AlertDialog.Footer>
+                              <Button slot="close" variant="tertiary">
+                                Cancel
+                              </Button>
+                              <Button onClick={() => handleDelete(user._id)} slot="close" variant="danger">
+                                Delete user
+                              </Button>
+                            </AlertDialog.Footer>
+                          </AlertDialog.Dialog>
+                        </AlertDialog.Container>
+                      </AlertDialog.Backdrop>
+                    </AlertDialog>
                   </Table.Cell>
                 </Table.Row>
               ))}
