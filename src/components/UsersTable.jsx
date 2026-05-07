@@ -23,8 +23,12 @@ const UsersTable = ({ users }) => {
                   <Table.Cell>{user.role}</Table.Cell>
                   <Table.Cell>{user.email}</Table.Cell>
                   <Table.Cell className={"flex gap-3 items-center "}>
-                    <Link href={""}><Button variant="outline">View Details</Button></Link>
-                    <Link href={""}><Button variant="outline">Edit</Button></Link>
+                    <Link href={`users/${user._id}`}>
+                      <Button variant="outline">View Details</Button>
+                    </Link>
+                    <Link href={""}>
+                      <Button variant="outline">Edit</Button>
+                    </Link>
                     <Button variant="danger">Delete</Button>
                   </Table.Cell>
                 </Table.Row>
